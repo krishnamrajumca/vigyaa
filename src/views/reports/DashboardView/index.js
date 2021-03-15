@@ -13,7 +13,7 @@ import actions from 'src/redux/actions';
 import Budget from './Budget';
 import LatestOrders from './LatestOrders';
 import LatestProducts from './LatestProducts';
-import Sales from './Sales';
+import Sessions from './Sessions';
 import TasksProgress from './TasksProgress';
 import TotalCustomers from './TotalCustomers';
 import TotalProfit from './TotalProfit';
@@ -40,13 +40,15 @@ const Dashboard = () => {
     live_users,
     sessions,
     reply,
-    published
+    published,
+    dates
   } = useSelector((state) => state.metaReducer);
   console.log(live_users, sessions, reply, published);
   const dispatch = useDispatch();
   const [sessionCount, setSessionCount] = useState(0);
   const [duration, setDuration] = useState(0);
   const [avgTime, setAvgTime] = useState(0);
+  const [sessionDetails, setSessionDetails] = useState([]);
   const [publishedCount, setPublishedCount] = useState(0);
   const [unpublishedCount, setunPublishedCount] = useState(0);
   const [publishedRCount, setPublishedRCount] = useState(0);
@@ -58,6 +60,10 @@ const Dashboard = () => {
   };
   useEffect(() => {
     dispatch(actions.fetchLiveUsers());
+    const interval = setInterval(() => {
+      dispatch(actions.fetchLiveUsers());
+    }, 300000)
+    return interval;
   }, []);
   useEffect(() => {
     const { session_details } = sessions;
@@ -78,6 +84,7 @@ const Dashboard = () => {
       setAvgTime(0);
     }
     setDuration(session_duration);
+    setSessionDetails(session_details);
   }, [sessions]);
   useEffect(() => {
     const { total_published, total_unpublished } = published;
@@ -163,7 +170,7 @@ const Dashboard = () => {
             xl={12}
             xs={12}
           >
-            <Sales />
+            <Sessions dates={dates} sessions={sessionDetails} />
           </Grid>
           <Grid
             item
