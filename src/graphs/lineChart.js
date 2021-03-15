@@ -1,10 +1,14 @@
+/* eslint-disable */
+import React from 'react';
+import ReactApexChart from 'react-apexcharts';
+
 export default class LineChart extends React.Component {
         constructor(props) {
           super(props);
           this.state = {
             series: [{
               name: 'XYZ MOTORS',
-              data: dates
+              data: []
             }],
             options: {
               chart: {
@@ -41,11 +45,6 @@ export default class LineChart extends React.Component {
                 },
               },
               yaxis: {
-                labels: {
-                  formatter: function (val) {
-                    return (val / 1000000).toFixed(0);
-                  },
-                },
                 title: {
                   text: 'Price'
                 },
@@ -55,19 +54,20 @@ export default class LineChart extends React.Component {
               },
               tooltip: {
                 shared: false,
-                y: {
-                  formatter: function (val) {
-                    return (val / 1000000).toFixed(0)
-                  }
-                }
               }
             },
           };
         }
         render() {
+          const { options, series } = this.state;
           return (
                 <div id="chart">
-                  <ReactApexChart options={this.state.options} series={this.state.series} type="area" height={350} />
+                  <ReactApexChart
+                      options={options}
+                      series={series}
+                      type="area"
+                      height={350}
+                  />
                 </div>
           );
         }

@@ -1,3 +1,7 @@
+/* eslint-disable */
+import React from 'react';
+import ReactApexChart from 'react-apexcharts';
+
 export default class StockedChart extends React.Component {
         constructor(props) {
           super(props);
@@ -60,9 +64,15 @@ export default class StockedChart extends React.Component {
           };
         }
         render() {
+          const { options, series } = this.state;
           return (
                 <div id="chart">
-                  <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height={350} />
+                    <ReactApexChart
+                        options={options}
+                        series={series}
+                        type="bar"
+                        height={350}
+                    />
                 </div>
           );
         }

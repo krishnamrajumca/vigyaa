@@ -1,3 +1,6 @@
+import React from 'react';
+import ReactApexChart from 'react-apexcharts';
+
 export default class BarChart extends React.Component {
         constructor(props) {
           super(props);
@@ -43,21 +46,21 @@ export default class BarChart extends React.Component {
               fill: {
                 opacity: 1
               },
-              tooltip: {
-                y: {
-                  formatter: function (val) {
-                    return "$ " + val + " thousands"
-                  }
-                }
-              }
             },
           };
         }
+
         render() {
+          const { options, series } = this.state;
           return (
-      <div id="chart">
-  <ReactApexChart options={this.state.options} series={this.state.series} type="bar" height={350} />
-</div>
+                <div id="chart">
+                  <ReactApexChart
+                    options={options}
+                    series={series}
+                    type="bar"
+                    height={350}
+                  />
+                </div>
           );
         }
       }

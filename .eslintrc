@@ -37,6 +37,7 @@
     "no-console": "off",
     "react/prop-types": "off",
     "no-param-reassign": "off",
+    "no-trailing-spaces":"off",
     "no-plusplus": "off",
     "react-hooks/exhaustive-deps": "off",
     "react/forbid-prop-types": "off",
