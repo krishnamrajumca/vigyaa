@@ -22,17 +22,19 @@ const Sessions = ({ className, ...rest }) => {
   const { dates, sessions } = rest;
   const [series, setSeries] = useState([]);
   const [labels, setlabels] = useState([]);
-  const [avgSession, setAvgSession] = useState([]);
   useEffect(() => {
     const filledData = fillYears(sessions, { duration: 0, session_count: 0, avg: 0 }, dates, 'created_on');
-
     const visitors = filledData.map((s) => s.session_count);
     const session_times = filledData.map((s) => s.duration);
     const dateLabels = filledData.map((s) => s.created_on);
     const avg = filledData.map((s) => s.avg);
-    setSeries([{ name: 'Visitors', data: visitors }, { name: 'Session Time', data: session_times }]);
+    const arr = [
+      { name: 'Visitors', data: visitors },
+      { name: 'Session Time', data: session_times },
+      { name: 'Avg Session Time', data: avg }
+    ];
+    setSeries(arr);
     setlabels(dateLabels);
-    setAvgSession(avg);
   }, [sessions, dates]);
 
   return (
@@ -67,7 +69,7 @@ const Sessions = ({ className, ...rest }) => {
           height={400}
           position="relative"
         >
-          <BarChart series={avgSession} labels={labels} title="Avg Session Time" />
+          <BarChart series={[series[2]]} labels={labels} title="Avg Session Time" />
         </Box>
       </CardContent>
 
