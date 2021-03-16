@@ -27,12 +27,12 @@ const useStyles = makeStyles(() => ({
 const TotalProfit = ({ className, ...rest }) => {
   const classes = useStyles();
   const {
-    publishedCount,
-    unpublishedCount,
-    publishedRCount,
-    unpublishedRCount
+    pc,
+    upc,
+    prc,
+    uprc
   } = rest;
-  const total_count = publishedCount + unpublishedCount + publishedRCount + unpublishedRCount;
+  const total_count = pc + upc + prc + uprc;
   return (
     <Card
       className={clsx(classes.root, className)}
@@ -82,7 +82,7 @@ const TotalProfit = ({ className, ...rest }) => {
                 color="textPrimary"
                 variant="caption"
               >
-                {publishedCount}
+                {pc}
               </Typography>
 
               </Grid>
@@ -101,7 +101,7 @@ const TotalProfit = ({ className, ...rest }) => {
                 color="textPrimary"
                 variant="caption"
               >
-                {unpublishedCount}
+                {upc}
               </Typography>
 
               </Grid>
@@ -120,7 +120,7 @@ const TotalProfit = ({ className, ...rest }) => {
                 color="textPrimary"
                 variant="caption"
               >
-                {unpublishedRCount + publishedRCount}
+                {uprc + prc}
               </Typography>
 
               </Grid>

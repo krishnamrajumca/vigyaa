@@ -1,7 +1,5 @@
 import axios from 'axios';
-import StoreConfig from 'src/redux/store';
 
-const { store } = StoreConfig;
 const instance = axios.create({
     baseURL: 'https://dev.vigyaa.io/api/api/analytics/',
     headers: {
@@ -41,22 +39,9 @@ const fetchPublishedData = (dates) => {
   };
 };
 
-let prevDates = null;
-store.subscribe(() => {
-    const { dates } = store.getState().metaReducer;
-    console.log(dates, 'dates changed in store');
-    if (JSON.stringify(dates) !== JSON.stringify(prevDates)) {
-      prevDates = dates;
-      if (typeof dates !== 'undefined') {
-        if (typeof dates.start_date !== 'undefined') {
-          store.dispatch(fetchSessionsData(dates));
-          store.dispatch(fetchReplyData(dates));
-          store.dispatch(fetchPublishedData(dates));
-        }
-      }
-    }
-});
-
 export default {
- fetchLiveUsers
+ fetchLiveUsers,
+ fetchPublishedData,
+ fetchReplyData,
+ fetchSessionsData
 };

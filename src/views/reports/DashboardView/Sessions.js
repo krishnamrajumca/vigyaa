@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
@@ -37,6 +38,10 @@ const Sessions = ({ className, ...rest }) => {
     setlabels(dateLabels);
   }, [sessions, dates]);
 
+  if(series.length == 0){
+    return null;
+  }
+  else
   return (
     <Card
       className={clsx(classes.root, className)}
@@ -69,7 +74,7 @@ const Sessions = ({ className, ...rest }) => {
           height={400}
           position="relative"
         >
-          <BarChart series={[series[2]]} labels={labels} title="Avg Session Time" />
+           <BarChart series={[series[2]]} labels={labels} title="Avg Session Time" />
         </Box>
       </CardContent>
 

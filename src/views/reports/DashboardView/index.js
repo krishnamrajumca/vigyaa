@@ -47,20 +47,27 @@ const Dashboard = () => {
   const [duration, setDuration] = useState(0);
   const [avgTime, setAvgTime] = useState(0);
   const [sessionDetails, setSessionDetails] = useState([]);
-  const [publishedCount, setPublishedCount] = useState(0);
-  const [unpublishedCount, setunPublishedCount] = useState(0);
-  const [publishedRCount, setPublishedRCount] = useState(0);
-  const [unpublishedRCount, setunPublishedRCount] = useState(0);
+  const [pc, setPublishedCount] = useState(0);
+  const [upc, setunPublishedCount] = useState(0);
+  const [prc, setPublishedRCount] = useState(0);
+  const [uprc, setunPublishedRCount] = useState(0);
   console.log(duration, avgTime);
   const onDateChange = (d) => {
     dispatch({ type: 'DATES_CHANGED', payload: d });
   };
   useEffect(() => {
+    dispatch(actions.fetchSessionsData(dates));
+    dispatch(actions.fetchReplyData(dates));
+    dispatch(actions.fetchPublishedData(dates));
+  }, [dates]);
+  useEffect(() => {
     dispatch(actions.fetchLiveUsers());
     const interval = setInterval(() => {
       dispatch(actions.fetchLiveUsers());
     }, 300000);
-    return interval;
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
   useEffect(() => {
     const { session_details } = sessions;
@@ -153,12 +160,7 @@ const Dashboard = () => {
             xl={3}
             xs={12}
           >
-            <TotalProfit
-              publishedCount={publishedCount}
-              unpublishedCount={unpublishedCount}
-              publishedRCount={publishedRCount}
-              unpublishedRCount={unpublishedRCount}
-            />
+            <TotalProfit pc={pc} upc={upc} prc={prc} uprc={uprc} />
           </Grid>
           <Grid
             item

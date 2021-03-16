@@ -108,14 +108,21 @@ export default class LineChart extends React.Component {
         render() {
           const { options, series } = this.state;
           return (
-                <div id="chart">
-                  <ReactApexChart
-                      options={options}
-                      series={series}
-                      type="area"
-                      height={350}
-                  />
-                </div>
+            <>
+            {
+              series.length > 0 ?
+              <div >
+                <ReactApexChart
+                    options={options}
+                    series={series}
+                    type="area"
+                    height={350}
+                />
+              </div>
+              :
+              null
+            }
+            </>
           );
         }
       }

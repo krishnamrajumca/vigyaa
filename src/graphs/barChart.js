@@ -81,14 +81,21 @@ export default class BarChart extends React.Component {
         render() {
           const { options, series } = this.state;
           return (
-                <div id="chart">
+              <>
+              {
+                series.length > 0 ?
+                <div id="bar_chart">
                   <ReactApexChart
                     options={options}
                     series={series}
                     type="bar"
                     height={350}
                   />
-                </div>
+                  </div>
+                  :
+                  null
+              }
+              </>
           );
         }
       }

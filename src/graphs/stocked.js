@@ -49,7 +49,6 @@ export default class StockedChart extends React.Component {
           };
         }
         static getDerivedStateFromProps(props,state){
-          console.log("STOCKED GRAPH",props.data)
           return {
             series: props.data,
             options: {
@@ -96,14 +95,21 @@ export default class StockedChart extends React.Component {
         render() {
           const { options, series } = this.state;
           return (
-                <div id="chart">
-                    <ReactApexChart
-                        options={options}
-                        series={series}
-                        type="bar"
-                        height={350}
-                    />
-                </div>
+            <>
+            {
+              series.length > 0 ?
+              <div id="stocked_chart">
+                  <ReactApexChart
+                      options={options}
+                      series={series}
+                      type="bar"
+                      height={350}
+                  />
+              </div>
+              :
+              null
+            }
+            </>
           );
         }
       }
