@@ -1,44 +1,39 @@
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
-import fillYears from 'src/utils/fillYears'
-import moment from 'moment';
+import fillYears from 'src/utils/fillYears';
 import {
   Box,
-  Button,
   Card,
   CardContent,
   CardHeader,
   Divider,
-  useTheme,
   makeStyles,
-  colors
 } from '@material-ui/core';
-import LineChart from 'src/graphs/lineChart'
-import BarChart from 'src/graphs/barChart'
+import LineChart from 'src/graphs/lineChart';
+import BarChart from 'src/graphs/barChart';
+
 const useStyles = makeStyles(() => ({
   root: {}
 }));
 
 const Sessions = ({ className, ...rest }) => {
   const classes = useStyles();
-  const theme = useTheme();
   const { dates, sessions } = rest;
   const [series, setSeries] = useState([]);
-  const [labels, setlabels] = useState([])
+  const [labels, setlabels] = useState([]);
   const [avgSession, setAvgSession] = useState([]);
   useEffect(() => {
-    console.log("Sessions",sessions);
-    const filledData = fillYears(sessions,{duration:0,session_count:0,avg:0},dates,'created_on')
+    const filledData = fillYears(sessions, { duration: 0, session_count: 0, avg: 0 }, dates, 'created_on');
 
-    const visitors = filledData.map(s => s.session_count);
-    const session_times = filledData.map(s => s.duration);
-    const dateLabels = filledData.map(s => s.created_on);
-    const avg = filledData.map(s => s.avg);
-    setSeries([{ name: "Visitors", data: visitors }, {name: 'Session Time', data: session_times}]);
+    const visitors = filledData.map((s) => s.session_count);
+    const session_times = filledData.map((s) => s.duration);
+    const dateLabels = filledData.map((s) => s.created_on);
+    const avg = filledData.map((s) => s.avg);
+    setSeries([{ name: 'Visitors', data: visitors }, { name: 'Session Time', data: session_times }]);
     setlabels(dateLabels);
     setAvgSession(avg);
-  }, [sessions,dates])
+  }, [sessions, dates]);
 
   return (
     <Card
@@ -54,13 +49,13 @@ const Sessions = ({ className, ...rest }) => {
           height={400}
           position="relative"
         >
-          <LineChart series={[series[0]]} labels={labels} title="Visitors"/>
+          <LineChart series={[series[0]]} labels={labels} title="Visitors" />
         </Box>
         <Box
           height={400}
           position="relative"
         >
-          <LineChart series={[series[1]]} labels={labels} title="Session Times"/>
+          <LineChart series={[series[1]]} labels={labels} title="Session Times" />
         </Box>
         <Box
           height={40}
@@ -72,7 +67,7 @@ const Sessions = ({ className, ...rest }) => {
           height={400}
           position="relative"
         >
-          <BarChart series={[series[1]]} labels={labels} title="Avg Session Time"/>
+          <BarChart series={avgSession} labels={labels} title="Avg Session Time" />
         </Box>
       </CardContent>
 

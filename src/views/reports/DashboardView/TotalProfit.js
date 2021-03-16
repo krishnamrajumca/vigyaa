@@ -74,7 +74,7 @@ const TotalProfit = ({ className, ...rest }) => {
               <Typography
                 color="textPrimary"
                 variant="subtitle2"
-                style={{fontSize:10}}
+                style={{ fontSize: 10 }}
               >
                 Published
               </Typography>
@@ -93,7 +93,7 @@ const TotalProfit = ({ className, ...rest }) => {
               <Typography
                 color="textPrimary"
                 variant="subtitle2"
-                style={{fontSize:10}}
+                style={{ fontSize: 10 }}
               >
                 Unpublished
               </Typography>
@@ -112,7 +112,7 @@ const TotalProfit = ({ className, ...rest }) => {
               <Typography
                 color="textPrimary"
                 variant="subtitle2"
-                style={{fontSize:10}}
+                style={{ fontSize: 10 }}
               >
                 Replys
               </Typography>

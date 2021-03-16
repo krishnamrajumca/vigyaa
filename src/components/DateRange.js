@@ -100,7 +100,7 @@ const Daterange = (props) => {
             toggle={toggle}
             definedRanges={dateRanges()}
             initialDateRange={dateRange}
-            onChange={(range) => {setDateRange(range)}}
+            onChange={(range) => setDateRange(range)}
           />
         </DialogContent>
       </Dialog>

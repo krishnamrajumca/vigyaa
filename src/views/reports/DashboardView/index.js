@@ -11,8 +11,6 @@ import Daterange from 'src/components/DateRange';
 import { useSelector, useDispatch } from 'react-redux';
 import actions from 'src/redux/actions';
 import Budget from './Budget';
-import LatestOrders from './LatestOrders';
-import LatestProducts from './LatestProducts';
 import Sessions from './Sessions';
 import TasksProgress from './TasksProgress';
 import TotalCustomers from './TotalCustomers';
@@ -54,15 +52,14 @@ const Dashboard = () => {
   const [publishedRCount, setPublishedRCount] = useState(0);
   const [unpublishedRCount, setunPublishedRCount] = useState(0);
   console.log(duration, avgTime);
-  const onDateChange = (dates) => {
-    console.log(dates, live_users);
-    dispatch({ type: 'DATES_CHANGED', payload: dates });
+  const onDateChange = (d) => {
+    dispatch({ type: 'DATES_CHANGED', payload: d });
   };
   useEffect(() => {
     dispatch(actions.fetchLiveUsers());
     const interval = setInterval(() => {
       dispatch(actions.fetchLiveUsers());
-    }, 300000)
+    }, 300000);
     return interval;
   }, []);
   useEffect(() => {
@@ -181,8 +178,6 @@ const Dashboard = () => {
           >
             <Posts dates={dates} reply={reply} published={published} />
           </Grid>
-
-
         </Grid>
       </Container>
     </Page>

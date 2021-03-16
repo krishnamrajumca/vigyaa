@@ -25,8 +25,8 @@ const useStyles = makeStyles(() => ({
 
 const TasksProgress = ({ className, avgTime, ...rest }) => {
   const classes = useStyles();
-  const session_time = () => {
-    var duration = parseInt(avgTime);
+  const session_time = (time) => {
+    const duration = parseInt(time, 10);
     const d = Math.floor(duration / 86400);
     const dr = duration % 86400;
     let h = Math.floor(dr / 3600);
@@ -62,7 +62,7 @@ const TasksProgress = ({ className, avgTime, ...rest }) => {
               color="textPrimary"
               variant="h5"
             >
-              {session_time()}
+              {session_time(avgTime)}
             </Typography>
           </Grid>
           <Grid item>
