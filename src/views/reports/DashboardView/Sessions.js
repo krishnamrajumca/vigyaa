@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import fillYears from 'src/utils/fillYears'
+import moment from 'moment';
 import {
   Box,
   Button,
@@ -26,15 +28,17 @@ const Sessions = ({ className, ...rest }) => {
   const [labels, setlabels] = useState([])
   const [avgSession, setAvgSession] = useState([]);
   useEffect(() => {
-    console.log("Sessions",sessions)
-    const visitors = sessions.map(s => s.session_count);
-    const session_times = sessions.map(s => s.duration);
-    const dateLabels = sessions.map(s => s.created_on);
-    const avg = sessions.map(s => s.avg);
+    console.log("Sessions",sessions);
+    const filledData = fillYears(sessions,{duration:0,session_count:0,avg:0},dates,'created_on')
+
+    const visitors = filledData.map(s => s.session_count);
+    const session_times = filledData.map(s => s.duration);
+    const dateLabels = filledData.map(s => s.created_on);
+    const avg = filledData.map(s => s.avg);
     setSeries([{ name: "Visitors", data: visitors }, {name: 'Session Time', data: session_times}]);
     setlabels(dateLabels);
     setAvgSession(avg);
-  }, [sessions])
+  }, [sessions,dates])
 
   return (
     <Card

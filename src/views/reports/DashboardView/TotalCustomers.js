@@ -10,7 +10,7 @@ import {
   colors,
   makeStyles
 } from '@material-ui/core';
-import PeopleIcon from '@material-ui/icons/PeopleOutlined';
+import TimerIcon from '@material-ui/icons/Timer';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -72,7 +72,7 @@ const TotalCustomers = ({ className, duration, ...rest }) => {
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
-              <PeopleIcon />
+              <TimerIcon />
             </Avatar>
           </Grid>
         </Grid>

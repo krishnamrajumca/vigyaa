@@ -17,7 +17,7 @@ import Sessions from './Sessions';
 import TasksProgress from './TasksProgress';
 import TotalCustomers from './TotalCustomers';
 import TotalProfit from './TotalProfit';
-import TrafficByDevice from './TrafficByDevice';
+import Posts from './Posts';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -179,26 +179,10 @@ const Dashboard = () => {
             xl={12}
             xs={12}
           >
-            <TrafficByDevice />
+            <Posts dates={dates} reply={reply} published={published} />
           </Grid>
-          <Grid
-            item
-            lg={12}
-            md={12}
-            xl={12}
-            xs={12}
-          >
-            <LatestProducts />
-          </Grid>
-          <Grid
-            item
-            lg={8}
-            md={12}
-            xl={9}
-            xs={12}
-          >
-            <LatestOrders />
-          </Grid>
+
+
         </Grid>
       </Container>
     </Page>

@@ -50,7 +50,7 @@ export default class LineChart extends React.Component {
                 },
               },
               xaxis: {
-                categories: props.labels
+                categories: props.labels.reverse()
               },
               tooltip: {
                 shared: false,
@@ -61,7 +61,7 @@ export default class LineChart extends React.Component {
         static getDerivedStateFromProps(props,state){
           console.log("Line Graph", props)
           return {
-            series: props.series,
+            series: props.series.reverse(),
             options: {
               chart: {
                 type: 'area',
@@ -97,7 +97,7 @@ export default class LineChart extends React.Component {
                 },
               },
               xaxis: {
-                categories: props.labels
+                categories: props.labels.reverse()
               },
               tooltip: {
                 shared: false,

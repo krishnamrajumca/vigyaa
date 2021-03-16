@@ -10,7 +10,7 @@ import {
   makeStyles,
   colors
 } from '@material-ui/core';
-import InsertChartIcon from '@material-ui/icons/InsertChartOutlined';
+import TimerIcon from '@material-ui/icons/Timer';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -25,6 +25,19 @@ const useStyles = makeStyles(() => ({
 
 const TasksProgress = ({ className, avgTime, ...rest }) => {
   const classes = useStyles();
+  const session_time = () => {
+    var duration = parseInt(avgTime);
+    const d = Math.floor(duration / 86400);
+    const dr = duration % 86400;
+    let h = Math.floor(dr / 3600);
+    const hr = dr % 3600;
+    let m = Math.floor(hr / 60);
+    let mr = hr % 60;
+    h = h > 9 ? h : `0${h}`;
+    m = m > 9 ? m : `0${m}`;
+    mr = mr > 9 ? m : `0${mr}`;
+    return `${d}d: ${h}h: ${m}m: ${mr}s`;
+  };
 
   return (
     <Card
@@ -47,14 +60,14 @@ const TasksProgress = ({ className, avgTime, ...rest }) => {
             </Typography>
             <Typography
               color="textPrimary"
-              variant="h3"
+              variant="h5"
             >
-              {avgTime}
+              {session_time()}
             </Typography>
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
-              <InsertChartIcon />
+              <TimerIcon />
             </Avatar>
           </Grid>
         </Grid>

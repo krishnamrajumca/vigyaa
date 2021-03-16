@@ -11,7 +11,7 @@ import {
   makeStyles,
   colors
 } from '@material-ui/core';
-import AttachMoneyIcon from '@material-ui/icons/AttachMoney';
+import RateReviewIcon from '@material-ui/icons/RateReview';
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -61,7 +61,7 @@ const TotalProfit = ({ className, ...rest }) => {
           </Grid>
           <Grid item>
             <Avatar className={classes.avatar}>
-              <AttachMoneyIcon />
+              <RateReviewIcon />
             </Avatar>
           </Grid>
         </Grid>
@@ -74,8 +74,9 @@ const TotalProfit = ({ className, ...rest }) => {
               <Typography
                 color="textPrimary"
                 variant="subtitle2"
+                style={{fontSize:10}}
               >
-                Pulished posts
+                Published
               </Typography>
               <Typography
                 color="textPrimary"
@@ -92,8 +93,9 @@ const TotalProfit = ({ className, ...rest }) => {
               <Typography
                 color="textPrimary"
                 variant="subtitle2"
+                style={{fontSize:10}}
               >
-                Unpulished Posts
+                Unpublished
               </Typography>
               <Typography
                 color="textPrimary"
@@ -110,6 +112,7 @@ const TotalProfit = ({ className, ...rest }) => {
               <Typography
                 color="textPrimary"
                 variant="subtitle2"
+                style={{fontSize:10}}
               >
                 Replys
               </Typography>
